@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Mohamed Music</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <aside class="sidebar">
+
+        <h1>🎵 Mohamed Music</h1>
+
+        <nav>
+            <a href="#" class="active">🏠 الرئيسية</a>
+            <a href="#">🔎 بحث</a>
+            <a href="#">📚 مكتبتك</a>
+            <a href="#">❤️ المفضلة</a>
+            <a href="#">➕ إنشاء Playlist</a>
+        </nav>
+
+    </aside>
+
+    <main>
+
+        <header>
+
+            <div>
+                <h2>مرحباً بك 👋</h2>
+                <p>استمتع بالموسيقى مع Mohamed Music</p>
+            </div>
+
+            <button class="profile">
+                محمد
+            </button>
+
+        </header>
+
+        <section>
+
+            <h2>الأغاني المقترحة 🎧</h2>
+
+            <div class="songs">
+
+                {% for song in songs %}
+
+                <div class="song-card">
+
+                    <img src="{{ song.image }}" alt="Album">
+
+                    <h3>{{ song.title }}</h3>
+
+                    <p>{{ song.artist }}</p>
+
+                    <button onclick="playSong('{{ song.title }}')">
+                        ▶ تشغيل
+                    </button>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <div class="player">
+
+        <div>
+            <strong id="currentSong">لم يتم اختيار أغنية</strong>
+        </div>
+
+        <div class="controls">
+
+            <button>⏮</button>
+
+            <button class="play-button" onclick="togglePlay()">
+                ▶
+            </button>
+
+            <button>⏭</button>
+
+        </div>
+
+        <div class="progress">
+            <div id="progressBar"></div>
+        </div>
+
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+
+</html>
